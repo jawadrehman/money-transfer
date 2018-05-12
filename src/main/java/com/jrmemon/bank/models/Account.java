@@ -1,5 +1,7 @@
 package com.jrmemon.bank.models;
 
+import org.json.JSONObject;
+
 import java.math.BigDecimal;
 
 public class Account {
@@ -37,8 +39,15 @@ public class Account {
         return this.amount;
     }
 
+
+    public JSONObject toJSON(){
+        return new JSONObject(this);
+
+    }
     public String toString(){
-        return "Account " + this.accountName +  " with amount " + this.amount;
+
+        return toJSON().toString();
+
     }
 
     public static Account create(String uuid, String name){

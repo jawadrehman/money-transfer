@@ -2,6 +2,8 @@ package com.jrmemon.bank.routes;
 
 import com.jrmemon.bank.models.Account;
 import com.jrmemon.bank.models.Store;
+import groovy.json.JsonBuilder;
+import org.json.JSONObject;
 
 import java.math.BigDecimal;
 import java.util.*;
@@ -28,7 +30,13 @@ public class Accounts{
             put("", ((request, response)->{
                String uuid = UUID.randomUUID().toString();
                Account account =  Account.create(uuid, request.queryParams("accountName"));
-               return uuid + " " +  account;
+
+
+                JSONObject json = new JSONObject();
+                json.append(uuid, account.toJSON());
+
+                return json;
+
             }));
 
             post("/:id/credit/:amount", (request, response) -> {

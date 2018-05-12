@@ -1,3 +1,4 @@
 .idea
 target/
 bank.iml
+src/test/jest-tests/node_modules
